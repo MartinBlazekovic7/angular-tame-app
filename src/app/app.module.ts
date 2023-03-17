@@ -10,6 +10,7 @@ import { DeleteEditWindowComponent } from './components/windows/delete-edit-wind
 import { PostWindowComponent } from './components/windows/post-window/post-window.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
+import { SettingsPageComponent } from './components/pages/settings-page/settings-page.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RegisterPageComponent } from './components/pages/register-page/register
     PostWindowComponent,
     LoginPageComponent,
     RegisterPageComponent,
+    SettingsPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
