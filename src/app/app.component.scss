@@ -1,0 +1,11 @@
+@import "./src/assets/styles/_variables.scss";
+
+div {
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (max-width: $tablet-breakpoint) {
+  div {
+    flex-direction: column-reverse;
+  }
+}

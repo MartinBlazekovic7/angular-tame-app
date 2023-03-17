@@ -1,0 +1,54 @@
+@import "./src/assets/styles/_variables.scss";
+
+.navbar {
+  font-family: "Montserrat", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  background-color: $primary-color;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  img {
+    width: 60px;
+  }
+}
+.navbar-menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar-menu-item {
+  color: $font-color;
+  font-weight: 700;
+  margin: 0 16px;
+  cursor: pointer;
+  span {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: $tablet-breakpoint) {
+  .navbar {
+    justify-content: center;
+    bottom: 0%;
+    width: 100%;
+    img {
+      display: none;
+    }
+  }
+  .navbar-menu {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .navbar-menu-item {
+    span {
+      display: block;
+    }
+    p {
+      display: none;
+    }
+  }
+}
