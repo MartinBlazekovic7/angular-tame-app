@@ -17,6 +17,67 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 24px 2%;
 }
+.post {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 0.5px solid #a8bab1;
+  padding: 8px 0;
+  .post-desc {
+    margin-left: 12px;
+  }
+  .post-interacts {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-left: 60px;
+    div {
+      cursor: pointer;
+      color: $secondary-color;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        background-color: #d3ddd7;
+      }
+      span {
+        padding: 0 4px;
+      }
+    }
+    div:nth-child(1) {
+      border-right: 0.5px solid #a8bab1;
+    }
+  }
+}
+.post-main {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: start;
+  img {
+    width: 60px;
+  }
+  div {
+    width: calc(100% - 60px);
+    span:nth-child(1) {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    span:nth-child(2) {
+      margin-left: 8px;
+      font-size: 12px;
+    }
+  }
+}
+.post-picture {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: contain;
+}
 @media only screen and (max-width: $tablet-breakpoint) {
   .container {
     min-height: none;
