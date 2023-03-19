@@ -1,0 +1,28 @@
+.option:nth-child(1) {
+  border-top: 0.5px solid #a8bab1;
+}
+.option {
+  padding: 12px 0;
+  border-bottom: 0.5px solid #a8bab1;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    background-color: #d3ddd7;
+  }
+}
+
+.log-out {
+  color: rgb(230, 49, 49);
+  font-weight: 700;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.about {
+  height: 100px;
+  width: 100%;
+  color: #a8bab1;
+  text-align: center;
+  margin-top: 200px;
+}
