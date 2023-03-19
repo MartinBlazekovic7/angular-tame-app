@@ -2,8 +2,7 @@
 
 .navbar {
   font-family: "Montserrat", sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: $primary-color;
   height: 80px;
   display: flex;
@@ -18,6 +17,7 @@
 .navbar-menu {
   display: flex;
   flex-direction: row;
+  user-select: none;
 }
 
 .navbar-menu-item {
@@ -28,6 +28,13 @@
   span {
     display: none;
   }
+  p {
+    margin: 0;
+  }
+}
+
+.selected {
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: $tablet-breakpoint) {
@@ -51,5 +58,9 @@
     p {
       display: none;
     }
+  }
+  .selected {
+    text-decoration: none;
+    color: #fff;
   }
 }

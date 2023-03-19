@@ -1,6 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./src/assets/styles/_variables.scss";
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.container {
+  font-family: "Montserrat", sans-serif;
+  color: $font-color;
+  min-height: 100vh;
+  background-color: $background-color;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 24px 2%;
+}
+@media only screen and (max-width: $tablet-breakpoint) {
+  .container {
+    min-height: none;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 80px;
+  }
 }
