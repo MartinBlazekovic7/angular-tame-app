@@ -9,9 +9,19 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5%;
+  padding: 0 15%;
   img {
     width: 60px;
+  }
+}
+.logo-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  h2 {
+    font-weight: 800;
+    margin: 0;
+    margin-left: 4px;
   }
 }
 .navbar-menu {
@@ -46,6 +56,9 @@
     img {
       display: none;
     }
+  }
+  .logo-div {
+    display: none;
   }
   .navbar-menu {
     width: 100%;
