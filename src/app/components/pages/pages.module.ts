@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -16,7 +17,7 @@ import { SettingsPageComponent } from './settings-page/settings-page.component';
     SettingsPageComponent,
     SearchPageComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   exports: [
     HomePageComponent,
     ProfilePageComponent,

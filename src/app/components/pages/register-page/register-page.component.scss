@@ -1,0 +1,35 @@
+@import "./src/assets/styles/_variables.scss";
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+form {
+  width: 90%;
+  .form-group {
+    margin: 24px 0;
+  }
+  p {
+    text-align: center;
+  }
+  input {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $secondary-color;
+  }
+  a {
+    color: $primary-color;
+  }
+}
+.btn-tame-custom {
+  color: #fff;
+  background-color: $primary-color;
+  border: 1px solid $primary-color;
+  width: 200px;
+  margin: 12px auto;
+  display: block;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
