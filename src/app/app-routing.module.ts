@@ -6,12 +6,30 @@ import { ProfilePageComponent } from './components/pages/profile-page/profile-pa
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoggedInGuard } from './security/logged-in.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomePageComponent },
-  { path: 'profile', component: ProfilePageComponent },
-  { path: 'settings', component: SettingsPageComponent },
-  { path: 'search', component: SearchPageComponent },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  { path: 'home', component: HomePageComponent, canActivate: [LoggedInGuard] },
+  {
+    path: 'profile',
+    component: ProfilePageComponent,
+    canActivate: [LoggedInGuard],
+  },
+  {
+    path: 'settings',
+    component: SettingsPageComponent,
+    canActivate: [LoggedInGuard],
+  },
+  {
+    path: 'search',
+    component: SearchPageComponent,
+    canActivate: [LoggedInGuard],
+  },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: '**', redirectTo: 'home' },

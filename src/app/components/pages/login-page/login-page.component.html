@@ -1,26 +1,41 @@
 <div class="container">
   <h2>Log in to TAME</h2>
-  <form>
+  <form #authenticationForm="ngForm" name="authenticationForm">
     <div class="form-group">
       <input
-        type="email"
+        [(ngModel)]="login.username"
+        name="username"
+        required
+        type="username"
         class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        placeholder="Enter email"
+        [disabled]="authenticating"
+        placeholder="Enter username"
       />
     </div>
     <div class="form-group">
       <input
+        [(ngModel)]="login.password"
+        name="password"
+        [disabled]="authenticating"
+        required
         type="password"
         class="form-control"
-        id="exampleInputPassword1"
         placeholder="Enter password"
       />
     </div>
     <p class="form-check-label" for="exampleCheck1">
       Don't have an account? <a [routerLink]="['../register']">Sign Up!</a>
     </p>
-    <button type="submit" class="btn btn-tame-custom">Submit</button>
+    <button
+      type="submit"
+      (click)="buttonLoginClick()"
+      [disabled]="authenticating"
+      class="btn btn-tame-custom"
+    >
+      Submit
+    </button>
+    <div class="text-danger mt-2" *ngIf="authenticationError">
+      Login failed! Check your credentials and try again.
+    </div>
   </form>
 </div>

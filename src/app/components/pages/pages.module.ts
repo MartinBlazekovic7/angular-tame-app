@@ -7,6 +7,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { SettingsPageComponent } from './settings-page/settings-page.component';
     SettingsPageComponent,
     SearchPageComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   exports: [
     HomePageComponent,
     ProfilePageComponent,
