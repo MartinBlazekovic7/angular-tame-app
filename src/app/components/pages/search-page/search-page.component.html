@@ -2,9 +2,26 @@
   <h2>Find new people on TAME</h2>
   <hr />
   <div class="input-div">
-    <input type="text" placeholder="Type the name of the person..." />
+    <form (submit)="onSubmit()">
+      <input
+        type="text"
+        placeholder="Type the name of the person..."
+        name="inputText"
+        [(ngModel)]="searchTerm"
+      />
+    </form>
   </div>
-  <div class="search-results">
-    <div class="row"></div>
+  <div [@inOutAnimation] class="search-results" *ngIf="filteredUsers">
+    <div class="search-result" *ngFor="let user of filteredUsers">
+      <img
+        class="profile-image"
+        src="../../../../assets/images/mocks/lik1.jpg"
+        alt="Profile Image"
+      />
+      <div class="name-username">
+        <h5 class="name">{{ user.firstname + " " + user.lastname }}</h5>
+        <i class="username">@{{ user.username }}</i>
+      </div>
+    </div>
   </div>
 </div>
