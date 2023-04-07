@@ -1,1 +1,10 @@
-<p>post-window works!</p>
+<div class="overlay"></div>
+<div class="window">
+  <div class="close-button" (click)="closeWindow()">X</div>
+  <!-- add close button -->
+  <h2>Write your post:</h2>
+  <form (submit)="onSubmit()">
+    <input type="text" id="inputText" name="inputText" [(ngModel)]="text" />
+    <button type="submit" class="btn-tame-custom">Submit</button>
+  </form>
+</div>

@@ -1,6 +1,6 @@
 export class Post {
   id?: number;
-  creationDate?: Date;
+  creationDate?: string;
   makerUsername?: string;
   text?: string;
 }

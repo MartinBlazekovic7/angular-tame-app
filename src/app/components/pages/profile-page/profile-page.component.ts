@@ -12,7 +12,8 @@ import { PostService } from 'src/app/services/post.service';
 export class ProfilePageComponent implements OnInit {
   user: User = {};
   userPosts: Post[] = [];
-
+  writingNewPost: boolean = false;
+  newPost: Post = {};
   constructor(
     private profileService: ProfileService,
     private postService: PostService
@@ -35,5 +36,20 @@ export class ProfilePageComponent implements OnInit {
     this.postService
       .likePost(id, this.user.username!!)
       .subscribe(() => console.log('liked'));
+  }
+
+  newPostButton() {
+    this.newPost = {
+      id: this.userPosts.length,
+      makerUsername: this.user.username,
+      text: '',
+      creationDate: '',
+    };
+    this.writingNewPost = true;
+  }
+
+  onChildVarChange(childVar: boolean) {
+    this.writingNewPost = childVar;
+    console.log('refresh posts');
   }
 }

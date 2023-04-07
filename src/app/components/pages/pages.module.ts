@@ -8,6 +8,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
 import { FormsModule } from '@angular/forms';
+import { WindowsModule } from '../windows/windows.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     SettingsPageComponent,
     SearchPageComponent,
   ],
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, WindowsModule],
   exports: [
     HomePageComponent,
     ProfilePageComponent,
