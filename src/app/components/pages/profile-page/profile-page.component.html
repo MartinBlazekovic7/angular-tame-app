@@ -5,14 +5,14 @@
       alt="profile picture"
       class="profile-picture"
     />
-    <h2>Martin Blažeković</h2>
+    <h2>{{ user.firstname }} {{ user.lastname }}</h2>
   </div>
   <hr />
   <div class="row">
     <div class="col number-part">
       <div>
         <h4>Posts</h4>
-        <p>2</p>
+        <p>{{ userPosts.length }}</p>
       </div>
       <div>
         <h4>Followers</h4>
@@ -27,9 +27,9 @@
   <div class="button-div">
     <button class="btn btn-tame-custom">NEW POST</button>
   </div>
-  <h4>Posts by Martin</h4>
+  <h4>Posts by {{ user.firstname }}</h4>
   <div class="posts">
-    <div class="post">
+    <div class="post" *ngFor="let post of userPosts">
       <div class="post-main">
         <img
           src="../../../../assets/images/mocks/lik1.jpg"
@@ -38,47 +38,23 @@
         />
         <div class="post-desc">
           <div>
-            <span>Martin Blažeković</span>
-            <span>20:32, 19.03.2023</span>
+            <span>{{ post.makerUsername }}</span>
+            <span>{{ post.creationDate }}</span>
           </div>
-          <p class="post-text">Danas je bio lijep i suncan dan!</p>
+          <p class="post-text">{{ post.text }}</p>
         </div>
       </div>
       <div class="post-interacts">
         <div class="like">
-          <span class="material-symbols-outlined"> thumb_up </span>
+          <span class="material-symbols-outlined" (click)="likePost(post.id)">
+            thumb_up
+          </span>
           <span>2</span>
         </div>
         <div class="like">
           <span class="material-symbols-outlined"> comment </span>
           <span>3</span>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="post">
-    <div class="post-main">
-      <img
-        src="../../../../assets/images/mocks/lik1.jpg"
-        alt="profile picture"
-        class="post-picture"
-      />
-      <div class="post-desc">
-        <div>
-          <span>Martin Blažeković</span>
-          <span>22:12, 17.03.2023</span>
-        </div>
-        <p class="post-text">Laku noć svima!</p>
-      </div>
-    </div>
-    <div class="post-interacts">
-      <div class="like">
-        <span class="material-symbols-outlined"> thumb_up </span>
-        <span>2</span>
-      </div>
-      <div class="like">
-        <span class="material-symbols-outlined"> comment </span>
-        <span>3</span>
       </div>
     </div>
   </div>
