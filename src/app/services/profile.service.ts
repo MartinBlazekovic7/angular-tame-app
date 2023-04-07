@@ -18,13 +18,9 @@ export class ProfileService {
     }),
   };
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthenticationService
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  getUserDetails(): Observable<User> {
-    let username = this.authService.getAuthenticatedUserUsername();
+  getUserDetails(username: string): Observable<User> {
     return this.http
       .get<User>(this.rootUrlUser + username, this.httpOptions)
       .pipe(
@@ -32,8 +28,7 @@ export class ProfileService {
         catchError(this.handleError<any>('getUserDetails', []))
       );
   }
-  getUserPosts(): Observable<Post[]> {
-    let username = this.authService.getAuthenticatedUserUsername();
+  getUserPosts(username: string): Observable<Post[]> {
     return this.http
       .get<Post[]>(this.rootUrlPost + 'maker=' + username, this.httpOptions)
       .pipe(

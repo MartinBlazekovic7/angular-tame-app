@@ -21,6 +21,11 @@ const routes: Routes = [
     canActivate: [LoggedInGuard],
   },
   {
+    path: 'profile/:username',
+    component: ProfilePageComponent,
+    canActivate: [LoggedInGuard],
+  },
+  {
     path: 'settings',
     component: SettingsPageComponent,
     canActivate: [LoggedInGuard],

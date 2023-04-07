@@ -12,7 +12,11 @@
     </form>
   </div>
   <div [@inOutAnimation] class="search-results" *ngIf="filteredUsers">
-    <div class="search-result" *ngFor="let user of filteredUsers">
+    <div
+      class="search-result"
+      *ngFor="let user of filteredUsers"
+      [routerLink]="['../profile/' + user.username]"
+    >
       <img
         class="profile-image"
         src="../../../../assets/images/mocks/lik1.jpg"

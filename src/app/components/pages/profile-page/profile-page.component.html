@@ -25,8 +25,19 @@
     </div>
   </div>
   <div class="button-div">
-    <button class="btn btn-tame-custom" (click)="newPostButton()">
+    <button
+      class="btn btn-tame-custom"
+      (click)="newPostButton()"
+      *ngIf="ownProfile"
+    >
       NEW POST
+    </button>
+    <button
+      class="btn btn-tame-custom"
+      (click)="followUnfollowUser()"
+      *ngIf="!ownProfile"
+    >
+      {{ doIFollowText }}
     </button>
   </div>
   <h4>Posts by {{ user.firstname }}</h4>
