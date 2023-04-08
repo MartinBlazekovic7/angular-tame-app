@@ -1,6 +1,6 @@
 <div class="container">
   <div class="settings">
-    <div class="option">Edit your information</div>
+    <div class="option" (click)="editingInfo = true">Edit your information</div>
     <div class="option">Change the theme</div>
     <div class="option log-out" (click)="logout()">LOG OUT</div>
   </div>
@@ -11,3 +11,8 @@
     </p>
   </div>
 </div>
+<app-edit-information-window
+  *ngIf="editingInfo"
+  [user]="user"
+  (childVarChange)="onChildVarChange($event)"
+></app-edit-information-window>
