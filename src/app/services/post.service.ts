@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, tap } from 'rxjs';
+import { Post } from '../models/post.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +15,15 @@ export class PostService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
+  addNewPost(post: Post) {
+    return this.http.post(this.rootUrl, post, this.httpOptions).pipe(
+      tap((_) => console.log(`new post by=${post.makerUsername}`)),
+      catchError(this.handleError<any>('addNewPost'))
+    );
+  }
+
   likePost(id: number | undefined, username: string) {
     const url = `${this.rootUrl}/${id}/${username}`;
-    console.log('here', url);
     return this.http.put(url, id, this.httpOptions).pipe(
       tap((_) => console.log(`liked a post=${id}`)),
       catchError(this.handleError<any>('likePost'))

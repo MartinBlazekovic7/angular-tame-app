@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Post } from 'src/app/models/post.model';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-post-window',
@@ -13,6 +14,7 @@ export class PostWindowComponent implements OnInit {
 
   text: string = '';
 
+  constructor(private postService: PostService) {}
   ngOnInit() {}
 
   onSubmit() {
@@ -20,6 +22,9 @@ export class PostWindowComponent implements OnInit {
     this.post.creationDate = new Date().toISOString().slice(0, 10);
     this.closeWindow();
     console.log(this.post);
+    this.postService.addNewPost(this.post).subscribe(() => {
+      console.log('new post added');
+    });
   }
 
   closeWindow() {
