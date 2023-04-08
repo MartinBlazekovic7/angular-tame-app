@@ -12,12 +12,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./profile-page.component.scss'],
 })
 export class ProfilePageComponent implements OnInit {
+  currentUser?: string = '';
+  currentUserDetails?: User = {};
   user: User = {};
+  whoUserFollows: User[] = [];
+  userFollowers: User[] = [];
   userPosts: Post[] = [];
   writingNewPost: boolean = false;
   newPost: Post = {};
   ownProfile?: boolean;
   doIFollowText: string = '';
+  doIFollowBoolean: boolean = false;
   constructor(
     private profileService: ProfileService,
     private postService: PostService,
@@ -27,24 +32,55 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     let urlUsername = this.route.snapshot.paramMap.get('username');
-    let username = this.authService.getAuthenticatedUserUsername();
-
-    if (urlUsername == null || urlUsername === username) this.ownProfile = true;
-    else {
+    this.currentUser = this.authService
+      .getAuthenticatedUserUsername()
+      ?.toString();
+    let profile = this.currentUser;
+    if (urlUsername == null || urlUsername === this.currentUser) {
+      this.ownProfile = true;
+    } else {
       this.ownProfile = false;
-      username = urlUsername;
-      // get am i following
-      // set {{doIFollowText}}
+      profile = urlUsername;
+      this.profileService
+        .getUserDetails(this.currentUser!!.toString())
+        .subscribe((response) => {
+          this.currentUserDetails = response;
+        });
     }
     this.profileService
-      .getUserDetails(username!!.toString())
+      .getUserDetails(profile!!.toString())
       .subscribe((response) => {
         this.user = response;
       });
     this.profileService
-      .getUserPosts(username!!.toString())
+      .getUserPosts(profile!!.toString())
       .subscribe((response) => {
         this.userPosts = response;
+      });
+    this.profileService
+      .getFollowersOfUser(profile!!.toString())
+      .subscribe((response) => {
+        this.userFollowers = response;
+        console.log('followers', this.userFollowers);
+        if (!this.ownProfile) {
+          const result = this.userFollowers.filter(
+            (follower) => follower.username === this.currentUser
+          );
+
+          if (result.length > 0) {
+            this.doIFollowBoolean = true;
+            this.doIFollowText = 'UNFOLLOW';
+          } else {
+            this.doIFollowBoolean = false;
+            this.doIFollowText = 'FOLLOW';
+          }
+        }
+      });
+    this.profileService
+      .getWhoUserFollows(profile!!.toString())
+      .subscribe((response) => {
+        this.whoUserFollows = response;
+        console.log('user follows', this.whoUserFollows);
       });
   }
 
@@ -73,5 +109,28 @@ export class ProfilePageComponent implements OnInit {
     console.log('refresh posts');
   }
 
-  followUnfollowUser() {}
+  followUnfollowUser() {
+    if (this.doIFollowBoolean) {
+      this.profileService
+        .unfollowUser(this.currentUser!, this.user.username!)
+        .subscribe(() => {
+          console.log('unfollowed');
+          this.doIFollowBoolean = false;
+          this.doIFollowText = 'FOLLOW';
+          this.userFollowers = this.userFollowers.filter(
+            (follower) =>
+              follower.username !== this.currentUserDetails!.username
+          );
+        });
+    } else {
+      this.profileService
+        .followUser(this.currentUser!, this.user.username!)
+        .subscribe(() => {
+          console.log('followed');
+          this.doIFollowBoolean = true;
+          this.doIFollowText = 'UNFOLLOW';
+          this.userFollowers.push(this.currentUserDetails!);
+        });
+    }
+  }
 }

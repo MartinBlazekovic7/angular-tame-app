@@ -6,6 +6,7 @@
       class="profile-picture"
     />
     <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+    <i>@{{ user.username }}</i>
   </div>
   <hr />
   <div class="row">
@@ -16,11 +17,11 @@
       </div>
       <div>
         <h4>Followers</h4>
-        <p>4</p>
+        <p>{{ userFollowers.length }}</p>
       </div>
       <div>
         <h4>Following</h4>
-        <p>4</p>
+        <p>{{ whoUserFollows.length }}</p>
       </div>
     </div>
   </div>
