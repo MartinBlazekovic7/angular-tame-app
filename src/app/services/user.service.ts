@@ -24,6 +24,15 @@ export class UserService {
       catchError(this.handleError<any>('getAllUsers', []))
     );
   }
+
+  editUserInformation(user: User) {
+    let url = `${this.rootUrlUser}/update/${user}`;
+    /* return this.http.put<User>().pipe(
+      tap((_) => console.log('fetched allUsers')),
+      catchError(this.handleError<any>('getAllUsers', []))
+    ); */
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(operation);
