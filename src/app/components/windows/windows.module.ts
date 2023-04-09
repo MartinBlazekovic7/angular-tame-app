@@ -5,6 +5,8 @@ import { PostWindowComponent } from './post-window/post-window.component';
 import { FormsModule } from '@angular/forms';
 import { EditInformationWindowComponent } from './edit-information-window/edit-information-window.component';
 import { PostDetailsWindowComponent } from './post-details-window/post-details-window.component';
+import { UserListWindowComponent } from './user-list-window/user-list-window.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,13 +14,15 @@ import { PostDetailsWindowComponent } from './post-details-window/post-details-w
     PostWindowComponent,
     EditInformationWindowComponent,
     PostDetailsWindowComponent,
+    UserListWindowComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   exports: [
     DeleteEditWindowComponent,
     PostWindowComponent,
     EditInformationWindowComponent,
     PostDetailsWindowComponent,
+    UserListWindowComponent,
   ],
 })
 export class WindowsModule {}

@@ -3,4 +3,6 @@ export class Post {
   creationDate?: string;
   makerUsername?: string;
   text?: string;
+  likes?: number;
+  comments?: number;
 }

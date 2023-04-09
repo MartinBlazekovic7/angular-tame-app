@@ -17,11 +17,11 @@
       </div>
       <div>
         <h4>Followers</h4>
-        <p>{{ userFollowers.length }}</p>
+        <p (click)="showFollowersUsersList()">{{ userFollowers.length }}</p>
       </div>
       <div>
         <h4>Following</h4>
-        <p>{{ whoUserFollows.length }}</p>
+        <p (click)="showFollowingUsersList()">{{ whoUserFollows.length }}</p>
       </div>
     </div>
   </div>
@@ -63,11 +63,11 @@
           <span class="material-symbols-outlined" (click)="likePost(post.id)">
             thumb_up
           </span>
-          <span>2</span>
+          <span (click)="showLikesUsersList(post.id!)">{{ post.likes }}</span>
         </div>
         <div class="like">
           <span class="material-symbols-outlined"> comment </span>
-          <span>3</span>
+          <span>{{ post.comments }}</span>
         </div>
       </div>
     </div>
@@ -79,3 +79,10 @@
   [post]="newPost"
   (childVarChange)="onChildVarChange($event)"
 ></app-post-window>
+
+<app-user-list-window
+  *ngIf="showUsersList"
+  [users]="whichUsersToShow"
+  [ownProfile]="ownProfile"
+  (childVarChangeUsersList)="onChildVarChangeUsersPosts($event)"
+></app-user-list-window>

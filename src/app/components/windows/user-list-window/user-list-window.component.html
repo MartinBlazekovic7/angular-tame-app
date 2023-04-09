@@ -1,0 +1,38 @@
+<div class="overlay"></div>
+<div class="window">
+  <div class="close-button" (click)="closeWindow()">X</div>
+  <div class="search-results" *ngIf="ownProfile">
+    <div
+      class="search-result"
+      *ngFor="let user of users"
+      [routerLink]="['../profile/' + user.username]"
+    >
+      <img
+        class="profile-image"
+        src="../../../../assets/images/mocks/lik1.jpg"
+        alt="Profile Image"
+      />
+      <div class="name-username">
+        <h5 class="name">{{ user.firstname + " " + user.lastname }}</h5>
+        <i class="username">@{{ user.username }}</i>
+      </div>
+    </div>
+  </div>
+  <div class="search-results" *ngIf="!ownProfile">
+    <div
+      class="search-result"
+      *ngFor="let user of users"
+      [routerLink]="['../../profile/' + user.username]"
+    >
+      <img
+        class="profile-image"
+        src="../../../../assets/images/mocks/lik1.jpg"
+        alt="Profile Image"
+      />
+      <div class="name-username">
+        <h5 class="name">{{ user.firstname + " " + user.lastname }}</h5>
+        <i class="username">@{{ user.username }}</i>
+      </div>
+    </div>
+  </div>
+</div>

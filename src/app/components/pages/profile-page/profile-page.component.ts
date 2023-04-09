@@ -5,6 +5,7 @@ import { Post } from 'src/app/models/post.model';
 import { PostService } from 'src/app/services/post.service';
 import { AuthenticationService } from 'src/app/security/authentication.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -19,13 +20,16 @@ export class ProfilePageComponent implements OnInit {
   userFollowers: User[] = [];
   userPosts: Post[] = [];
   writingNewPost: boolean = false;
+  showUsersList: boolean = false;
   newPost: Post = {};
   ownProfile?: boolean;
   doIFollowText: string = '';
   doIFollowBoolean: boolean = false;
+  whichUsersToShow: User[] = [];
   constructor(
     private profileService: ProfileService,
     private postService: PostService,
+    private commentService: CommentService,
     private authService: AuthenticationService,
     private route: ActivatedRoute
   ) {}
@@ -56,6 +60,14 @@ export class ProfilePageComponent implements OnInit {
       .getUserPosts(profile!!.toString())
       .subscribe((response) => {
         this.userPosts = response;
+        this.userPosts.forEach((up) => {
+          this.postService.getPostLikes(up.id!).subscribe((response) => {
+            up.likes = response.length;
+          });
+          this.commentService.getPostComments(up.id!).subscribe((response) => {
+            up.comments = response.length;
+          });
+        });
       });
     this.profileService
       .getFollowersOfUser(profile!!.toString())
@@ -84,14 +96,13 @@ export class ProfilePageComponent implements OnInit {
       });
   }
 
-  getPostLikes() {}
-
   getPostComments() {}
 
   likePost(id: number | undefined) {
     this.postService
       .likePost(id, this.user.username!!)
       .subscribe(() => console.log('liked'));
+    // dodati +1 na likes, dodati da se oboja lajk
   }
 
   newPostButton() {
@@ -132,5 +143,26 @@ export class ProfilePageComponent implements OnInit {
           this.userFollowers.push(this.currentUserDetails!);
         });
     }
+  }
+
+  onChildVarChangeUsersPosts(childVar: boolean) {
+    this.showUsersList = childVar;
+    this.whichUsersToShow = [];
+    console.log('heloooo');
+  }
+
+  showLikesUsersList(id: number) {
+    this.postService.getPostLikes(id).subscribe((response) => {
+      this.whichUsersToShow = response;
+    });
+    this.showUsersList = true;
+  }
+  showFollowersUsersList() {
+    this.whichUsersToShow = this.userFollowers;
+    this.showUsersList = true;
+  }
+  showFollowingUsersList() {
+    this.whichUsersToShow = this.whoUserFollows;
+    this.showUsersList = true;
   }
 }

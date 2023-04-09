@@ -29,6 +29,15 @@ export class PostService {
       catchError(this.handleError<any>('likePost'))
     );
   }
+
+  getPostLikes(id: number) {
+    const url = `${this.rootUrl}/liked/${id}`;
+    return this.http.get(url, this.httpOptions).pipe(
+      tap((_) => console.log(`get likes of a post=${id}`)),
+      catchError(this.handleError<any>('getPostLikes'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(operation);
