@@ -18,7 +18,7 @@
     -50%,
     -50%
   ); /* centers the box in the middle of the page */
-  width: 700px;
+  width: 400px;
   height: 300px;
   background-color: #fff;
   border-radius: 12px;
@@ -81,4 +81,10 @@
 .username {
   font-size: 1rem;
   margin: 0;
+}
+
+@media only screen and (max-width: $tablet-breakpoint) {
+  .window {
+    width: 100%;
+  }
 }

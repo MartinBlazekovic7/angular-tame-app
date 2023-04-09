@@ -65,7 +65,7 @@
           </span>
           <span (click)="showLikesUsersList(post.id!)">{{ post.likes }}</span>
         </div>
-        <div class="like">
+        <div class="like" (click)="showPostDetails(post.id!)">
           <span class="material-symbols-outlined"> comment </span>
           <span>{{ post.comments }}</span>
         </div>
@@ -86,3 +86,44 @@
   [ownProfile]="ownProfile"
   (childVarChangeUsersList)="onChildVarChangeUsersPosts($event)"
 ></app-user-list-window>
+
+<div class="post-details" *ngIf="showingPost">
+  <div class="overlay"></div>
+  <div class="window">
+    <div class="close-button" (click)="showingPost = false">X</div>
+    <div class="post">
+      <div class="post-main">
+        <img
+          src="../../../../assets/images/mocks/lik1.jpg"
+          alt="profile picture"
+          class="post-picture"
+        />
+        <div class="post-desc">
+          <div>
+            <span>{{ chosenPost?.makerUsername }}</span>
+            <span>{{ chosenPost?.creationDate }}</span>
+          </div>
+          <p class="post-text">{{ chosenPost?.text }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="post-comments">
+      <div class="comment" *ngFor="let comment of chosenPostComments">
+        <p>
+          <strong>{{ comment.makerUsername }}</strong
+          >: {{ comment.text }}
+        </p>
+      </div>
+    </div>
+    <form class="new-comment-form" (submit)="onSubmitNewComment()">
+      <input
+        type="text"
+        id="inputText"
+        name="inputText"
+        placeholder="Enter your comment here..."
+        [(ngModel)]="newCommentText"
+      />
+      <button type="submit" class="btn-tame-custom">></button>
+    </form>
+  </div>
+</div>

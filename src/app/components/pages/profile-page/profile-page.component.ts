@@ -6,6 +6,7 @@ import { PostService } from 'src/app/services/post.service';
 import { AuthenticationService } from 'src/app/security/authentication.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommentService } from 'src/app/services/comment.service';
+import { Comment } from 'src/app/models/comment.model';
 
 @Component({
   selector: 'app-profile-page',
@@ -26,6 +27,11 @@ export class ProfilePageComponent implements OnInit {
   doIFollowText: string = '';
   doIFollowBoolean: boolean = false;
   whichUsersToShow: User[] = [];
+  showingPost: boolean = false;
+  chosenPost?: Post = {};
+  chosenPostComments?: Comment[] = [];
+  newCommentText?: string = '';
+  allComments: Comment[] = [];
   constructor(
     private profileService: ProfileService,
     private postService: PostService,
@@ -94,6 +100,10 @@ export class ProfilePageComponent implements OnInit {
         this.whoUserFollows = response;
         console.log('user follows', this.whoUserFollows);
       });
+
+    this.commentService.getAllComments().subscribe((response) => {
+      this.allComments = response;
+    });
   }
 
   getPostComments() {}
@@ -164,5 +174,28 @@ export class ProfilePageComponent implements OnInit {
   showFollowingUsersList() {
     this.whichUsersToShow = this.whoUserFollows;
     this.showUsersList = true;
+  }
+
+  showPostDetails(id: number) {
+    this.chosenPost = this.userPosts.filter((post) => post.id === id)[0];
+    this.commentService.getPostComments(id).subscribe((response) => {
+      this.chosenPostComments = response;
+      this.showingPost = true;
+    });
+  }
+
+  onSubmitNewComment() {
+    let newComment: Comment = {
+      id: this.allComments.length + 1,
+      text: this.newCommentText,
+      makerUsername: this.currentUser,
+      postId: this.chosenPost?.id,
+      creationDate: new Date().toISOString().slice(0, 10),
+    };
+    this.commentService.addNewComment(newComment).subscribe(() => {
+      this.chosenPostComments?.push(newComment);
+      this.newCommentText = '';
+      console.log('added new comment');
+    });
   }
 }
