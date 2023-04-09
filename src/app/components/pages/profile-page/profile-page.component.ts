@@ -158,7 +158,6 @@ export class ProfilePageComponent implements OnInit {
   onChildVarChangeUsersPosts(childVar: boolean) {
     this.showUsersList = childVar;
     this.whichUsersToShow = [];
-    console.log('heloooo');
   }
 
   showLikesUsersList(id: number) {

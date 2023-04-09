@@ -2,166 +2,83 @@
   <h4>Posts by people you follow</h4>
   <hr />
   <div class="posts">
-    <div class="post">
+    <div class="post" *ngFor="let post of userFollowsPosts">
       <div class="post-main">
         <img
-          src="../../../../assets/images/mocks/lik2.jpg"
+          src="../../../../assets/images/mocks/lik1.jpg"
           alt="profile picture"
           class="post-picture"
         />
         <div class="post-desc">
           <div>
-            <span>Jan Tovernić</span>
-            <span>20:32, 19.03.2023</span>
+            <span>{{ post.makerUsername }}</span>
+            <span>{{ post.creationDate }}</span>
           </div>
-          <p class="post-text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
-          </p>
+          <p class="post-text">{{ post.text }}</p>
         </div>
       </div>
       <div class="post-interacts">
         <div class="like">
-          <span class="material-symbols-outlined"> thumb_up </span>
-          <span>1</span>
+          <span
+            class="material-symbols-outlined"
+            (click)="likePost(post.id, post.makerUsername!)"
+          >
+            thumb_up
+          </span>
+          <span (click)="showLikesUsersList(post.id!)">{{ post.likes }}</span>
         </div>
-        <div class="like">
+        <div class="like" (click)="showPostDetails(post.id!)">
           <span class="material-symbols-outlined"> comment </span>
-          <span>3</span>
+          <span>{{ post.comments }}</span>
         </div>
       </div>
     </div>
   </div>
-  <div class="posts">
+</div>
+
+<app-user-list-window
+  *ngIf="showUsersList"
+  [users]="whichUsersToShow"
+  (childVarChangeUsersList)="onChildVarChangeUsersPosts($event)"
+></app-user-list-window>
+
+<div class="post-details" *ngIf="showingPost">
+  <div class="overlay"></div>
+  <div class="window">
+    <div class="close-button" (click)="showingPost = false">X</div>
     <div class="post">
       <div class="post-main">
         <img
-          src="../../../../assets/images/mocks/likusa1.jpg"
+          src="../../../../assets/images/mocks/lik1.jpg"
           alt="profile picture"
           class="post-picture"
         />
         <div class="post-desc">
           <div>
-            <span>Lea Črepak</span>
-            <span>18:22, 19.03.2023</span>
+            <span>{{ chosenPost?.makerUsername }}</span>
+            <span>{{ chosenPost?.creationDate }}</span>
           </div>
-          <p class="post-text">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English. Many desktop publishing
-            packages and web page editors now use Lorem Ipsum as their default
-            model text
-          </p>
-        </div>
-      </div>
-      <div class="post-interacts">
-        <div class="like">
-          <span class="material-symbols-outlined"> thumb_up </span>
-          <span>4</span>
-        </div>
-        <div class="like">
-          <span class="material-symbols-outlined"> comment </span>
-          <span>1</span>
+          <p class="post-text">{{ chosenPost?.text }}</p>
         </div>
       </div>
     </div>
-  </div>
-  <div class="posts">
-    <div class="post">
-      <div class="post-main">
-        <img
-          src="../../../../assets/images/mocks/likusa1.jpg"
-          alt="profile picture"
-          class="post-picture"
-        />
-        <div class="post-desc">
-          <div>
-            <span>Lea Črepak</span>
-            <span>20:00, 18.03.2023</span>
-          </div>
-          <p class="post-text">
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority have suffered alteration in some form, by injected
-            humour,
-          </p>
-        </div>
-      </div>
-      <div class="post-interacts">
-        <div class="like">
-          <span class="material-symbols-outlined"> thumb_up </span>
-          <span></span>
-        </div>
-        <div class="like">
-          <span class="material-symbols-outlined"> comment </span>
-          <span>3</span>
-        </div>
+    <div class="post-comments">
+      <div class="comment" *ngFor="let comment of chosenPostComments">
+        <p>
+          <strong>{{ comment.makerUsername }}</strong
+          >: {{ comment.text }}
+        </p>
       </div>
     </div>
-  </div>
-  <div class="posts">
-    <div class="post">
-      <div class="post-main">
-        <img
-          src="../../../../assets/images/mocks/lik2.jpg"
-          alt="profile picture"
-          class="post-picture"
-        />
-        <div class="post-desc">
-          <div>
-            <span>Jan Tovernić</span>
-            <span>12:41, 17.03.2023</span>
-          </div>
-          <p class="post-text">
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced
-            below for those interested.
-          </p>
-        </div>
-      </div>
-      <div class="post-interacts">
-        <div class="like">
-          <span class="material-symbols-outlined"> thumb_up </span>
-          <span></span>
-        </div>
-        <div class="like">
-          <span class="material-symbols-outlined"> comment </span>
-          <span></span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="posts">
-    <div class="post">
-      <div class="post-main">
-        <img
-          src="../../../../assets/images/mocks/lik3.jpg"
-          alt="profile picture"
-          class="post-picture"
-        />
-        <div class="post-desc">
-          <div>
-            <span>Mislav Winkler</span>
-            <span>21:21, 16.03.2023</span>
-          </div>
-          <p class="post-text">
-            Many desktop publishing packages and web page editors now use Lorem
-            Ipsum as their default model text, and a search for 'lorem ipsum'
-            will uncover many web sites still in their infancy.
-          </p>
-        </div>
-      </div>
-      <div class="post-interacts">
-        <div class="like">
-          <span class="material-symbols-outlined"> thumb_up </span>
-          <span>2</span>
-        </div>
-        <div class="like">
-          <span class="material-symbols-outlined"> comment </span>
-          <span>1</span>
-        </div>
-      </div>
-    </div>
+    <form class="new-comment-form" (submit)="onSubmitNewComment()">
+      <input
+        type="text"
+        id="inputText"
+        name="inputText"
+        placeholder="Enter your comment here..."
+        [(ngModel)]="newCommentText"
+      />
+      <button type="submit" class="btn-tame-custom">></button>
+    </form>
   </div>
 </div>
