@@ -3,14 +3,6 @@
   <div class="close-button" (click)="closeWindow()">X</div>
 
   <form #myForm="ngForm" (submit)="onSubmit()">
-    <label for="username">Username:</label>
-    <input
-      type="text"
-      id="username"
-      name="username"
-      [(ngModel)]="user!!.username"
-      required
-    /><br /><br />
     <label for="first-name">First Name:</label>
     <input
       type="text"

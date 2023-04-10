@@ -9,6 +9,8 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
 import { FormsModule } from '@angular/forms';
 import { WindowsModule } from '../windows/windows.module';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { FilterPipe } from './admin-page/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { WindowsModule } from '../windows/windows.module';
     RegisterPageComponent,
     SettingsPageComponent,
     SearchPageComponent,
+    AdminPageComponent,
+    FilterPipe,
   ],
   imports: [CommonModule, RouterModule, FormsModule, WindowsModule],
   exports: [

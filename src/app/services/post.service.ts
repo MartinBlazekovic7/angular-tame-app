@@ -38,6 +38,14 @@ export class PostService {
     );
   }
 
+  deletePost(id: number) {
+    const url = `${this.rootUrl}/${id}`;
+    return this.http.delete<Post>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`deleted post id=${id}`)),
+      catchError(this.handleError<Post>('deletePost'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(operation);

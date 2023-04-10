@@ -1,0 +1,76 @@
+<div class="container">
+  <input
+    [(ngModel)]="searchTerm"
+    name="searchTerm"
+    type="text"
+    class="form-control"
+    placeholder="Enter user name"
+  />
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Edit User</th>
+        <th scope="col">Delete User</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr
+        *ngFor="
+          let user of allUsers
+            | filter : 'firstname' : 'lastname' : 'username' : searchTerm
+        "
+      >
+        <td (click)="showUserPosts(user)">{{ user.firstname }}</td>
+        <td (click)="showUserPosts(user)">{{ user.lastname }}</td>
+        <td (click)="showUserPosts(user)">{{ user.username }}</td>
+        <td (click)="showUserPosts(user)">{{ user.email }}</td>
+        <td>
+          <button class="btn btn-warning" (click)="editUser(user)">Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteUser(user)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-edit-information-window
+  *ngIf="editingInfo"
+  [user]="editingUser"
+  (childVarChange)="onChildVarChange($event)"
+></app-edit-information-window>
+
+<div class="post-details" *ngIf="showingUserPosts">
+  <div class="overlay"></div>
+  <div class="window">
+    <div class="close-button" (click)="showingUserPosts = false">X</div>
+    <div class="posts">
+      <div class="post" *ngFor="let post of userPosts">
+        <div class="post-main">
+          <img
+            src="../../../../assets/images/mocks/lik1.jpg"
+            alt="profile picture"
+            class="post-picture"
+          />
+          <div class="post-desc">
+            <div>
+              <span>{{ post.makerUsername }}</span>
+              <span>{{ post.creationDate }}</span>
+            </div>
+            <p class="post-text">{{ post.text }}</p>
+          </div>
+        </div>
+        <button class="btn btn-danger" (click)="deletePost(post)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

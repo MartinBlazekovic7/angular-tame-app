@@ -7,6 +7,8 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoggedInGuard } from './security/logged-in.guard';
+import { AdminPageComponent } from './components/pages/admin-page/admin-page.component';
+import { AdminAuthorityGuard } from './security/admin-authority.guard';
 
 const routes: Routes = [
   {
@@ -37,6 +39,11 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
+  {
+    path: 'admin-dashboard',
+    component: AdminPageComponent,
+    canActivate: [AdminAuthorityGuard],
+  },
   { path: '**', redirectTo: 'home' },
 ];
 

@@ -8,10 +8,11 @@ import { AuthenticationService } from 'src/app/security/authentication.service';
 })
 export class NavbarComponent implements OnInit {
   isAuthenticated = false;
-
+  isAdmin = false;
   constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     this.isAuthenticated = this.authenticationService.isUserAuthenticated();
+    this.isAdmin = this.authenticationService.isUserAdmin();
   }
 }

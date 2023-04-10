@@ -26,11 +26,18 @@ export class UserService {
   }
 
   editUserInformation(user: User) {
-    let url = `${this.rootUrlUser}/update/${user}`;
-    /* return this.http.put<User>().pipe(
-      tap((_) => console.log('fetched allUsers')),
-      catchError(this.handleError<any>('getAllUsers', []))
-    ); */
+    let url = `${this.rootUrlUser}/update/${user.username}`;
+    return this.http.put<User>(url, user).pipe(
+      tap((_) => console.log(`edited user=${user.username}`)),
+      catchError(this.handleError<User>('editUserInformation'))
+    );
+  }
+  deleteUser(username: string) {
+    const url = `${this.rootUrlUser}/${username}`;
+    return this.http.delete<User>(url, this.httpOptions).pipe(
+      tap((_) => console.log(`deleted user=${username}`)),
+      catchError(this.handleError<User>('deleteUser'))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

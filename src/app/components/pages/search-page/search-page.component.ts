@@ -25,6 +25,7 @@ export class SearchPageComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe((response) => {
       this.allUsers = response;
+      this.allUsers = this.allUsers.filter((u) => u.username !== 'admin');
     });
   }
 

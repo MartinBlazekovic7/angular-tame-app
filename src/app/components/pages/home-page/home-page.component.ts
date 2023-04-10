@@ -38,6 +38,7 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.authService.isUserAdmin());
     this.currentUser = this.authService
       .getAuthenticatedUserUsername()
       ?.toString();
