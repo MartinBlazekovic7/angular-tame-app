@@ -20,10 +20,8 @@ export class PostWindowComponent implements OnInit {
   onSubmit() {
     this.post.text = this.text;
     this.post.creationDate = new Date().toISOString().slice(0, 10);
-    this.closeWindow();
-    console.log(this.post);
     this.postService.addNewPost(this.post).subscribe(() => {
-      console.log('new post added');
+      this.closeWindow();
     });
   }
 

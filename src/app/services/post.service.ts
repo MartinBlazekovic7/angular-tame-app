@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { Post } from '../models/post.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,9 +31,9 @@ export class PostService {
     );
   }
 
-  getPostLikes(id: number) {
+  getPostLikes(id: number): Observable<User[]> {
     const url = `${this.rootUrl}/liked/${id}`;
-    return this.http.get(url, this.httpOptions).pipe(
+    return this.http.get<User[]>(url, this.httpOptions).pipe(
       tap((_) => console.log(`get likes of a post=${id}`)),
       catchError(this.handleError<any>('getPostLikes'))
     );

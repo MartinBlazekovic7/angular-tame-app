@@ -5,4 +5,5 @@ export class Post {
   text?: string;
   likes?: number;
   comments?: number;
+  didILike?: boolean;
 }

@@ -20,6 +20,14 @@
       <div class="post-interacts">
         <div class="like">
           <span
+            *ngIf="!post.didILike"
+            class="material-symbols-outlined no-fill"
+            (click)="likePost(post.id, post.makerUsername!)"
+          >
+            thumb_up
+          </span>
+          <span
+            *ngIf="post.didILike"
             class="material-symbols-outlined"
             (click)="likePost(post.id, post.makerUsername!)"
           >
@@ -28,7 +36,7 @@
           <span (click)="showLikesUsersList(post.id!)">{{ post.likes }}</span>
         </div>
         <div class="like" (click)="showPostDetails(post.id!)">
-          <span class="material-symbols-outlined"> comment </span>
+          <span class="material-symbols-outlined no-fill"> comment </span>
           <span>{{ post.comments }}</span>
         </div>
       </div>

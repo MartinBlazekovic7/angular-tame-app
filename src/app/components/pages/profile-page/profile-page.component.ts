@@ -120,14 +120,26 @@ export class ProfilePageComponent implements OnInit {
       id: this.userPosts.length,
       makerUsername: this.user.username,
       text: '',
-      creationDate: '',
+      creationDate: new Date().toISOString().slice(0, 10),
     };
     this.writingNewPost = true;
   }
 
   onChildVarChange(childVar: boolean) {
     this.writingNewPost = childVar;
-    console.log('refresh posts');
+    this.profileService
+      .getUserPosts(this.currentUser!!.toString())
+      .subscribe((response) => {
+        this.userPosts = response;
+        this.userPosts.forEach((up) => {
+          this.postService.getPostLikes(up.id!).subscribe((response) => {
+            up.likes = response.length;
+          });
+          this.commentService.getPostComments(up.id!).subscribe((response) => {
+            up.comments = response.length;
+          });
+        });
+      });
   }
 
   followUnfollowUser() {
@@ -185,11 +197,9 @@ export class ProfilePageComponent implements OnInit {
 
   onSubmitNewComment() {
     let newComment: Comment = {
-      id: this.allComments.length + 1,
       text: this.newCommentText,
       makerUsername: this.currentUser,
       postId: this.chosenPost?.id,
-      creationDate: new Date().toISOString().slice(0, 10),
     };
     this.commentService.addNewComment(newComment).subscribe(() => {
       this.chosenPostComments?.push(newComment);

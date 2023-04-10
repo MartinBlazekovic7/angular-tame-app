@@ -54,6 +54,10 @@ export class HomePageComponent implements OnInit {
         this.userFollowsPosts.forEach((up) => {
           this.postService.getPostLikes(up.id!).subscribe((response) => {
             up.likes = response.length;
+            let didILikeArray = response.filter(
+              (u) => u.username === this.currentUserDetails?.username
+            );
+            if (didILikeArray.length) up.didILike = true;
           });
           this.commentService.getPostComments(up.id!).subscribe((response) => {
             up.comments = response.length;
