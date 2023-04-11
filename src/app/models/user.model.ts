@@ -7,4 +7,6 @@ export class User {
   password?: string;
   dateOfBirth?: Date;
   dateOfRegistration?: Date;
+  firstPassword?: string;
+  confirmPassword?: string;
 }

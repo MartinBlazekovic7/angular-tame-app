@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Register to TAME</h2>
-  <form>
+  <form #myForm="ngForm" (submit)="onSubmit()">
     <div class="form-group">
       <input
         type="email"
@@ -8,6 +8,7 @@
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder="Email"
+        [(ngModel)]="user!!.email"
       />
     </div>
     <div class="form-group">
@@ -17,6 +18,7 @@
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder="Username"
+        [(ngModel)]="user!!.username"
       />
     </div>
     <div class="form-group">
@@ -26,6 +28,7 @@
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder="First Name"
+        [(ngModel)]="user!!.firstname"
       />
     </div>
     <div class="form-group">
@@ -35,6 +38,7 @@
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder="Last Name"
+        [(ngModel)]="user!!.lastname"
       />
     </div>
     <div class="form-group">
@@ -45,6 +49,7 @@
         id="dateOfBirth"
         aria-describedby="emailHelp"
         placeholder="Date of birth"
+        [(ngModel)]="user!!.dateOfBirth"
       />
     </div>
     <div class="form-group">
@@ -53,6 +58,7 @@
         class="form-control"
         id="exampleInputPassword1"
         placeholder="Password"
+        [(ngModel)]="user!!.firstPassword"
       />
     </div>
     <div class="form-group">
@@ -61,6 +67,7 @@
         class="form-control"
         id="exampleInputPassword1"
         placeholder="Confirm password"
+        [(ngModel)]="user!!.confirmPassword"
       />
     </div>
     <div class="form-group">
