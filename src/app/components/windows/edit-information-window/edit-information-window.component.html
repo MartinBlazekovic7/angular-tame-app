@@ -1,5 +1,5 @@
 <div class="overlay"></div>
-<div class="window">
+<div [ngClass]="darkTheme ? 'window dark' : 'window'">
   <div class="close-button" (click)="closeWindow()">X</div>
 
   <form #myForm="ngForm" (submit)="onSubmit()">

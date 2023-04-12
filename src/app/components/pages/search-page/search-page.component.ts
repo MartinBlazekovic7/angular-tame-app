@@ -20,9 +20,13 @@ export class SearchPageComponent implements OnInit {
   allUsers: User[] = [];
   filteredUsers: User[] = [];
   searchTerm: string = '';
+  darkTheme?: boolean;
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
+    else this.darkTheme = true;
+
     this.userService.getAllUsers().subscribe((response) => {
       this.allUsers = response;
       this.allUsers = this.allUsers.filter((u) => u.username !== 'admin');

@@ -1,10 +1,12 @@
-<div class="container">
-  <h2>Find new people on TAME</h2>
+<div [ngClass]="darkTheme ? 'container dark' : 'container'">
+  <h2 [ngClass]="darkTheme ? 'title dark' : 'title'">
+    Find new people on TAME
+  </h2>
   <hr />
   <div class="input-div">
     <form (submit)="onSubmit()">
       <input
-        id="search-term"
+        [ngClass]="darkTheme ? 'search-term dark-term' : 'search-term'"
         type="text"
         placeholder="Type the name of the person..."
         name="inputText"

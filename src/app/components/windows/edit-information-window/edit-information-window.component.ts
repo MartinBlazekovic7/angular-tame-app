@@ -11,8 +11,12 @@ export class EditInformationWindowComponent implements OnInit {
   @Input() user?: User;
   @Output() childVarChange = new EventEmitter();
   childVar?: boolean;
+  darkTheme?: boolean;
   constructor(private userService: UserService) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
+    else this.darkTheme = true;
+  }
   onSubmit() {
     this.userService.editUserInformation(this.user!).subscribe(() => {
       this.closeWindow();

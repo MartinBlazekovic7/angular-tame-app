@@ -30,6 +30,9 @@
     margin-top: 24px;
   }
 }
+.dark {
+  background-color: black;
+}
 .close-button {
   position: absolute;
   top: 24px;
@@ -62,6 +65,7 @@ input[type="email"] {
   box-sizing: border-box;
   margin-bottom: 20px;
 }
+
 .btn-tame-custom {
   color: #fff;
   background-color: $tertiary-color;

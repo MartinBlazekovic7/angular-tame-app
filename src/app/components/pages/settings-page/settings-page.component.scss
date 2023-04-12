@@ -1,3 +1,5 @@
+@import "./src/assets/styles/_variables.scss";
+
 .option:nth-child(1) {
   border-top: 0.5px solid #a8bab1;
 }
@@ -7,7 +9,13 @@
   cursor: pointer;
   transition: 0.2s ease-in-out;
   &:hover {
-    background-color: #d3ddd7;
+    background-color: #a8bab1;
+  }
+}
+
+.dark-option {
+  &:hover {
+    background-color: #27415a;
   }
 }
 
@@ -16,6 +24,16 @@
   font-weight: 700;
   cursor: pointer;
   &:hover {
+    background-color: $background-color;
+    text-decoration: underline;
+  }
+}
+.log-out-dark {
+  color: rgb(230, 49, 49);
+  font-weight: 700;
+  cursor: pointer;
+  &:hover {
+    background-color: $font-color;
     text-decoration: underline;
   }
 }

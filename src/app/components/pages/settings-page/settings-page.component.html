@@ -1,8 +1,23 @@
-<div class="container">
+<div [ngClass]="darkTheme ? 'container dark' : 'container'">
   <div class="settings">
-    <div class="option" (click)="editingInfo = true">Edit your information</div>
-    <div class="option">Change the theme</div>
-    <div class="option log-out" (click)="logout()">LOG OUT</div>
+    <div
+      [ngClass]="darkTheme ? 'option dark-option' : 'option'"
+      (click)="editingInfo = true"
+    >
+      Edit your information
+    </div>
+    <div
+      [ngClass]="darkTheme ? 'option dark-option' : 'option'"
+      (click)="changeTheme()"
+    >
+      Change the theme
+    </div>
+    <div
+      [ngClass]="darkTheme ? 'option log-out-dark' : 'option log-out'"
+      (click)="logout()"
+    >
+      LOG OUT
+    </div>
   </div>
   <div class="about">
     <p>

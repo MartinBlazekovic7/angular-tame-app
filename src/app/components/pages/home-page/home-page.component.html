@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="darkTheme ? 'container dark' : 'container'">
   <h4>Posts by people you follow</h4>
   <hr />
   <div class="posts">
@@ -52,7 +52,7 @@
 
 <div class="post-details" *ngIf="showingPost">
   <div class="overlay"></div>
-  <div class="window">
+  <div [ngClass]="darkTheme ? 'window dark' : 'window'">
     <div class="close-button" (click)="showingPost = false">X</div>
     <div class="post">
       <div class="post-main">

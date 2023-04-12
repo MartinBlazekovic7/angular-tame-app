@@ -27,6 +27,7 @@ export class HomePageComponent implements OnInit {
   newCommentText?: string = '';
   allComments: Comment[] = [];
   showUsersList: boolean = false;
+  darkTheme?: boolean;
 
   constructor(
     private profileService: ProfileService,
@@ -38,7 +39,9 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.authService.isUserAdmin());
+    if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
+    else this.darkTheme = true;
+
     this.currentUser = this.authService
       .getAuthenticatedUserUsername()
       ?.toString();

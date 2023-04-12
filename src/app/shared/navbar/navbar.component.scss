@@ -7,31 +7,43 @@
   height: 80px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   padding: 0 15%;
   img {
     width: 60px;
   }
 }
+.jc-center {
+  justify-content: center;
+}
+.jc-sb {
+  justify-content: space-between;
+}
+.dark {
+  background-color: $font-color;
+}
 .logo-div {
   display: flex;
   flex-direction: row;
   align-items: center;
-  h2 {
-    font-weight: 800;
-    margin: 0;
-    margin-left: 4px;
-  }
+}
+.navbar-title {
+  font-weight: 800;
+  margin: 0;
+  margin-left: 4px;
+  color: $font-color;
 }
 .navbar-menu {
   display: flex;
   flex-direction: row;
   user-select: none;
+  color: $font-color;
+}
+.dark-font {
+  color: $primary-color;
 }
 
 .navbar-menu-item {
-  color: $font-color;
   font-weight: 700;
   margin: 0 16px;
   cursor: pointer;

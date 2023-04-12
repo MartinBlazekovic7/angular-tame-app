@@ -1,9 +1,19 @@
 @import "./src/assets/styles/_variables.scss";
 
+.body-div {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+.dark {
+  background-color: black;
+}
+
 div {
   display: flex;
   flex-direction: column;
 }
+
 @media only screen and (max-width: $tablet-breakpoint) {
   div {
     flex-direction: column-reverse;

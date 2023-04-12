@@ -32,6 +32,7 @@ export class ProfilePageComponent implements OnInit {
   chosenPostComments?: Comment[] = [];
   newCommentText?: string = '';
   allComments: Comment[] = [];
+  darkTheme?: boolean;
   constructor(
     private profileService: ProfileService,
     private postService: PostService,
@@ -41,6 +42,9 @@ export class ProfilePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
+    else this.darkTheme = true;
+
     let urlUsername = this.route.snapshot.paramMap.get('username');
     this.currentUser = this.authService
       .getAuthenticatedUserUsername()

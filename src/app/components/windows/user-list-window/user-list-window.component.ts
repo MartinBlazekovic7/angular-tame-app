@@ -11,8 +11,12 @@ export class UserListWindowComponent implements OnInit {
   @Input() ownProfile?: boolean;
   @Output() childVarChangeUsersList = new EventEmitter();
   childVar?: boolean;
+  darkTheme?: boolean;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
+    else this.darkTheme = true;
+  }
 
   closeWindow() {
     this.childVarChangeUsersList.emit(this.childVar);

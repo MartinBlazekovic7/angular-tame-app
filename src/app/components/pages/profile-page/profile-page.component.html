@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="darkTheme ? 'container dark' : 'container'">
   <div class="row image-part">
     <img
       src="../../../../assets/images/mocks/lik1.jpg"
@@ -89,7 +89,7 @@
 
 <div class="post-details" *ngIf="showingPost">
   <div class="overlay"></div>
-  <div class="window">
+  <div [ngClass]="darkTheme ? 'window dark' : 'window'">
     <div class="close-button" (click)="showingPost = false">X</div>
     <div class="post">
       <div class="post-main">

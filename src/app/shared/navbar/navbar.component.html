@@ -1,9 +1,28 @@
-<div class="navbar">
+<div
+  [ngClass]="darkTheme ? 'navbar dark' : 'navbar'"
+  [ngStyle]="{
+    'justify-content': isAuthenticated == true ? 'space-between' : 'center'
+  }"
+>
   <div class="logo-div">
-    <img src="../../../assets/images/logos/lightThemeLogo.png" alt="" />
-    <h2>TAME</h2>
+    <img
+      *ngIf="!darkTheme"
+      src="../../../assets/images/logos/lightThemeLogo.png"
+      alt=""
+    />
+    <img
+      *ngIf="darkTheme"
+      src="../../../assets/images/logos/darkThemeLogo.png"
+      alt=""
+    />
+    <h2 [ngClass]="darkTheme ? 'navbar-title dark-font' : 'navbar-title'">
+      TAME
+    </h2>
   </div>
-  <div *ngIf="isAuthenticated && !isAdmin" class="navbar-menu">
+  <div
+    *ngIf="isAuthenticated && !isAdmin"
+    [ngClass]="darkTheme ? 'navbar-menu dark-font' : 'navbar-menu'"
+  >
     <div
       class="navbar-menu-item"
       [routerLink]="['home']"

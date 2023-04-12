@@ -12,6 +12,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 export class SettingsPageComponent implements OnInit {
   user: User = {};
   editingInfo: boolean = false;
+  darkTheme?: boolean;
   constructor(
     public authenticationService: AuthenticationService,
     private router: Router,
@@ -19,6 +20,9 @@ export class SettingsPageComponent implements OnInit {
     private authService: AuthenticationService
   ) {}
   ngOnInit(): void {
+    if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
+    else this.darkTheme = true;
+
     let username = this.authService.getAuthenticatedUserUsername();
     this.profileService
       .getUserDetails(username!!.toString())
@@ -34,5 +38,11 @@ export class SettingsPageComponent implements OnInit {
   onChildVarChange(childVar: boolean) {
     this.editingInfo = childVar;
     console.log('refresh user info');
+  }
+
+  changeTheme() {
+    if (this.darkTheme) localStorage.setItem('tameTheme', 'light');
+    else localStorage.setItem('tameTheme', 'dark');
+    window.location.reload();
   }
 }
