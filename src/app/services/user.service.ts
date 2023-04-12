@@ -9,6 +9,7 @@ import { AuthenticationService } from '../security/authentication.service';
 })
 export class UserService {
   private rootUrlUser = 'http://localhost:8080/authentication';
+  private rootUrlRegistration = 'http://localhost:8080/registration';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,6 +24,15 @@ export class UserService {
       tap((_) => console.log('fetched allUsers')),
       catchError(this.handleError<any>('getAllUsers', []))
     );
+  }
+
+  registerUser(user: User) {
+    return this.http
+      .post<User>(this.rootUrlRegistration, user, this.httpOptions)
+      .pipe(
+        tap((_) => console.log('register user')),
+        catchError(this.handleError<any>('registerUser', []))
+      );
   }
 
   editUserInformation(user: User) {
