@@ -57,7 +57,10 @@
       <p>Settings</p>
     </div>
   </div>
-  <div *ngIf="isAuthenticated && isAdmin" class="navbar-menu">
+  <div
+    *ngIf="isAuthenticated && isAdmin"
+    [ngClass]="darkTheme ? 'navbar-menu dark-font' : 'navbar-menu'"
+  >
     <div
       class="navbar-menu-item"
       [routerLink]="['admin-dashboard']"

@@ -17,7 +17,7 @@ export class AdminPageComponent implements OnInit {
   searchTerm: string = '';
   userPosts: Post[] = [];
   showingUserPosts: boolean = false;
-
+  darkTheme?: boolean;
   constructor(
     private userService: UserService,
     private postService: PostService,
@@ -25,6 +25,8 @@ export class AdminPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
+    else this.darkTheme = true;
     this.userService.getAllUsers().subscribe((response) => {
       this.allUsers = response;
       this.allUsers = this.allUsers.filter((u) => u.username !== 'admin');

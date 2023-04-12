@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="darkTheme ? 'container dark' : 'container'">
   <h2>Log in to TAME</h2>
   <form #authenticationForm="ngForm" name="authenticationForm">
     <div class="form-group">

@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="darkTheme ? 'container dark' : 'container'">
   <h2>Register to TAME</h2>
   <form #myForm="ngForm" (submit)="onSubmit()">
     <div class="form-group">

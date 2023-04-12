@@ -1,4 +1,4 @@
-<div class="container">
+<div [ngClass]="darkTheme ? 'container dark' : 'container'">
   <input
     [(ngModel)]="searchTerm"
     name="searchTerm"
@@ -6,7 +6,7 @@
     class="form-control"
     placeholder="Enter user name"
   />
-  <table class="table table-striped">
+  <table [ngClass]="darkTheme ? 'table dark-font' : 'table table-striped'">
     <thead>
       <tr>
         <th scope="col">First Name</th>
@@ -49,7 +49,7 @@
 
 <div class="post-details" *ngIf="showingUserPosts">
   <div class="overlay"></div>
-  <div class="window">
+  <div [ngClass]="darkTheme ? 'window dark-bg' : 'window'">
     <div class="close-button" (click)="showingUserPosts = false">X</div>
     <div class="posts">
       <div class="post" *ngFor="let post of userPosts">

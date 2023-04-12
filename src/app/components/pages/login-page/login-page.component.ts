@@ -13,6 +13,7 @@ export class LoginPageComponent implements OnInit {
   authenticating = false;
   login = new Login('', '');
   authenticationError = false;
+  darkTheme?: boolean;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -20,6 +21,9 @@ export class LoginPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
+    else this.darkTheme = true;
+
     if (this.authenticationService.isUserAuthenticated()) {
       this.router.navigate(['/home']).then();
     }

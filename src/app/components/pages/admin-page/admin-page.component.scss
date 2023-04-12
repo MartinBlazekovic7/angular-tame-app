@@ -27,6 +27,12 @@ input {
     border-bottom: 1px solid #000;
   }
 }
+.dark-font {
+  color: $background-color;
+}
+.dark-bg {
+  background-color: black;
+}
 
 .post-details {
   .overlay {

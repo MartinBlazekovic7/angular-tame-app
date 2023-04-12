@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/app/security/authentication.service';
 })
 export class RegisterPageComponent implements OnInit {
   user: User = {};
+  darkTheme?: boolean;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -17,6 +18,8 @@ export class RegisterPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
+    else this.darkTheme = true;
     if (this.authenticationService.isUserAuthenticated()) {
       this.router.navigate(['/home']).then();
     }
