@@ -60,7 +60,18 @@
       </div>
       <div class="post-interacts">
         <div class="like">
-          <span class="material-symbols-outlined" (click)="likePost(post.id)">
+          <span
+            *ngIf="!post.didILike"
+            class="material-symbols-outlined no-fill"
+            (click)="likePost(post.id)"
+          >
+            thumb_up
+          </span>
+          <span
+            *ngIf="post.didILike"
+            class="material-symbols-outlined"
+            (click)="likePost(post.id)"
+          >
             thumb_up
           </span>
           <span (click)="showLikesUsersList(post.id!)">{{ post.likes }}</span>

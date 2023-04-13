@@ -22,14 +22,14 @@
           <span
             *ngIf="!post.didILike"
             class="material-symbols-outlined no-fill"
-            (click)="likePost(post.id, post.makerUsername!)"
+            (click)="likePost(post.id)"
           >
             thumb_up
           </span>
           <span
             *ngIf="post.didILike"
             class="material-symbols-outlined"
-            (click)="likePost(post.id, post.makerUsername!)"
+            (click)="likePost(post.id)"
           >
             thumb_up
           </span>

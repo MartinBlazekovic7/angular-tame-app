@@ -113,10 +113,14 @@ export class ProfilePageComponent implements OnInit {
   getPostComments() {}
 
   likePost(id: number | undefined) {
-    this.postService
-      .likePost(id, this.user.username!!)
-      .subscribe(() => console.log('liked'));
-    // dodati +1 na likes, dodati da se oboja lajk
+    this.postService.likePost(id, this.user.username!!).subscribe(() => {
+      this.userPosts.forEach((post) => {
+        if (post.id === id) {
+          post.likes!++;
+          post.didILike = true;
+        }
+      });
+    });
   }
 
   newPostButton() {

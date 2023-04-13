@@ -72,11 +72,17 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  likePost(id: number | undefined, username: string) {
+  likePost(id: number | undefined) {
     this.postService
-      .likePost(id, username)
-      .subscribe(() => console.log('liked'));
-    // dodati +1 na likes, dodati da se oboja lajk
+      .likePost(id, this.currentUserDetails?.username!)
+      .subscribe(() => {
+        this.userFollowsPosts.forEach((post) => {
+          if (post.id === id) {
+            post.likes!++;
+            post.didILike = true;
+          }
+        });
+      });
   }
 
   onChildVarChangeUsersPosts(childVar: boolean) {
