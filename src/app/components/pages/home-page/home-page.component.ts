@@ -119,4 +119,28 @@ export class HomePageComponent implements OnInit {
       console.log('added new comment');
     });
   }
+
+  closePost() {
+    this.homeService
+      .getUserFollowsPosts(this.currentUser!)
+      .subscribe((response) => {
+        this.userFollowsPosts = response;
+        this.userFollowsPosts.forEach((up) => {
+          this.postService.getPostLikes(up.id!).subscribe((response) => {
+            up.likes = response.length;
+            let didILikeArray = response.filter(
+              (u) => u.username === this.currentUserDetails?.username
+            );
+            if (didILikeArray.length) up.didILike = true;
+          });
+          this.commentService.getPostComments(up.id!).subscribe((response) => {
+            up.comments = response.length;
+          });
+        });
+      });
+    this.commentService.getAllComments().subscribe((response) => {
+      this.allComments = response;
+    });
+    this.showingPost = false;
+  }
 }

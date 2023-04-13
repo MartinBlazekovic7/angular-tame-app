@@ -42,7 +42,7 @@
     </button>
   </div>
   <h4>Posts by {{ user.firstname }}</h4>
-  <div class="posts">
+  <div class="posts" *ngIf="userPosts.length > 0">
     <div class="post" *ngFor="let post of userPosts">
       <div class="post-main">
         <img
@@ -83,6 +83,9 @@
       </div>
     </div>
   </div>
+  <div class="posts" *ngIf="userPosts.length == 0">
+    <i>No posts by from you yet!</i>
+  </div>
 </div>
 
 <app-post-window
@@ -101,7 +104,7 @@
 <div class="post-details" *ngIf="showingPost">
   <div class="overlay"></div>
   <div [ngClass]="darkTheme ? 'window dark' : 'window'">
-    <div class="close-button" (click)="showingPost = false">X</div>
+    <div class="close-button" (click)="closePost()">X</div>
     <div class="post">
       <div class="post-main">
         <img

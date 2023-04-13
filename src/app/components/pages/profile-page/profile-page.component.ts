@@ -73,6 +73,10 @@ export class ProfilePageComponent implements OnInit {
         this.userPosts.forEach((up) => {
           this.postService.getPostLikes(up.id!).subscribe((response) => {
             up.likes = response.length;
+            let didILikeArray = response.filter(
+              (u) => u.username === this.currentUserDetails?.username
+            );
+            if (didILikeArray.length) up.didILike = true;
           });
           this.commentService.getPostComments(up.id!).subscribe((response) => {
             up.comments = response.length;
@@ -214,5 +218,29 @@ export class ProfilePageComponent implements OnInit {
       this.newCommentText = '';
       console.log('added new comment');
     });
+  }
+
+  closePost() {
+    this.profileService
+      .getUserPosts(this.currentUser!!.toString())
+      .subscribe((response) => {
+        this.userPosts = response;
+        this.userPosts.forEach((up) => {
+          this.postService.getPostLikes(up.id!).subscribe((response) => {
+            up.likes = response.length;
+            let didILikeArray = response.filter(
+              (u) => u.username === this.currentUserDetails?.username
+            );
+            if (didILikeArray.length) up.didILike = true;
+          });
+          this.commentService.getPostComments(up.id!).subscribe((response) => {
+            up.comments = response.length;
+          });
+        });
+      });
+    this.commentService.getAllComments().subscribe((response) => {
+      this.allComments = response;
+    });
+    this.showingPost = false;
   }
 }
