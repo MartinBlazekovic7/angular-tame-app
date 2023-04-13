@@ -14,13 +14,13 @@ form {
   }
   p {
     text-align: center;
+    color: $font-color;
   }
   input {
     background: transparent;
     border: none;
     border-radius: 0;
     border-bottom: 1px solid $secondary-color;
-    color: white;
   }
 
   a {

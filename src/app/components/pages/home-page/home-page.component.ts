@@ -10,6 +10,7 @@ import { CommentService } from 'src/app/services/comment.service';
 import { HomeService } from 'src/app/services/home.service';
 import { PostService } from 'src/app/services/post.service';
 import { ProfileService } from 'src/app/services/profile.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -28,12 +29,14 @@ export class HomePageComponent implements OnInit {
   allComments: Comment[] = [];
   showUsersList: boolean = false;
   darkTheme?: boolean;
+  allUsers: User[] = [];
 
   constructor(
     private profileService: ProfileService,
     private homeService: HomeService,
     private postService: PostService,
     private commentService: CommentService,
+    private userService: UserService,
     private authService: AuthenticationService,
     private route: ActivatedRoute
   ) {}
@@ -42,6 +45,10 @@ export class HomePageComponent implements OnInit {
     if (localStorage.getItem('tameTheme') === 'light') this.darkTheme = false;
     else this.darkTheme = true;
 
+    this.userService.getAllUsers().subscribe((response) => {
+      this.allUsers = response;
+      this.allUsers = this.allUsers.filter((u) => u.username !== 'admin');
+    });
     this.currentUser = this.authService
       .getAuthenticatedUserUsername()
       ?.toString();
@@ -142,5 +149,10 @@ export class HomePageComponent implements OnInit {
       this.allComments = response;
     });
     this.showingPost = false;
+  }
+
+  getProfileUrl(username: string) {
+    return this.allUsers.filter((user) => user.username === username)[0]
+      .profilePicture;
   }
 }

@@ -59,4 +59,8 @@ export class AdminPageComponent implements OnInit {
         this.showingUserPosts = true;
       });
   }
+  getProfileUrl(username: string) {
+    return this.allUsers.filter((user) => user.username === username)[0]
+      .profilePicture;
+  }
 }

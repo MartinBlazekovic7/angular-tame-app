@@ -55,7 +55,7 @@
       <div class="post" *ngFor="let post of userPosts">
         <div class="post-main">
           <img
-            src="../../../../assets/images/mocks/lik1.jpg"
+            src="{{ getProfileUrl(post.makerUsername!) }}"
             alt="profile picture"
             class="post-picture"
           />

@@ -12,7 +12,9 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterPageComponent implements OnInit {
   user: User = {};
   darkTheme?: boolean;
-
+  showingAvatarWindow?: boolean = false;
+  profileAvatar?: string =
+    'http://localhost:4200/assets/images/avatars/avatarNone.png';
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService,
@@ -35,11 +37,16 @@ export class RegisterPageComponent implements OnInit {
       lastname: this.user.lastname,
       password: this.user.firstPassword,
       dateOfBirth: this.user.dateOfBirth,
-      profilePicture: '',
+      profilePicture: this.profileAvatar,
     };
     this.userService.registerUser(newUser).subscribe(() => {
       alert('Successfully registered!');
       this.router.navigate(['login']);
     });
+  }
+
+  getProfilePic(event: any) {
+    this.profileAvatar = event.target.src;
+    this.showingAvatarWindow = false;
   }
 }

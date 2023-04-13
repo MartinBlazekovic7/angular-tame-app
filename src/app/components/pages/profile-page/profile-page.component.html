@@ -1,7 +1,7 @@
 <div [ngClass]="darkTheme ? 'container dark' : 'container'">
   <div class="row image-part">
     <img
-      src="../../../../assets/images/mocks/lik1.jpg"
+      src="{{ user.profilePicture }}"
       alt="profile picture"
       class="profile-picture"
     />
@@ -43,10 +43,10 @@
   </div>
   <h4>Posts by {{ user.firstname }}</h4>
   <div class="posts" *ngIf="userPosts.length > 0">
-    <div class="post" *ngFor="let post of userPosts">
+    <div class="post" *ngFor="let post of userPosts.reverse()">
       <div class="post-main">
         <img
-          src="../../../../assets/images/mocks/lik1.jpg"
+          src="{{ user.profilePicture }}"
           alt="profile picture"
           class="post-picture"
         />
@@ -108,7 +108,7 @@
     <div class="post">
       <div class="post-main">
         <img
-          src="../../../../assets/images/mocks/lik1.jpg"
+          src="{{ user.profilePicture }}"
           alt="profile picture"
           class="post-picture"
         />

@@ -77,15 +77,12 @@
         [(ngModel)]="user!!.confirmPassword"
       />
     </div>
-    <div class="form-group">
-      <label for="profilePicture">Upload a profile picture</label>
-      <input
-        type="file"
-        class="form-control"
-        id="profilePicture"
-        aria-describedby="emailHelp"
-        placeholder=""
-        name="profilePicture"
+    <div class="form-group center">
+      <img
+        src="{{ profileAvatar }}"
+        alt="choose avatar"
+        class="choose-avatar-img"
+        (click)="showingAvatarWindow = true"
       />
     </div>
     <p class="form-check-label" for="exampleCheck1">
@@ -93,4 +90,58 @@
     </p>
     <button type="submit" class="btn btn-tame-custom">Submit</button>
   </form>
+</div>
+
+<div class="choose-avatar-div" *ngIf="showingAvatarWindow">
+  <div class="overlay"></div>
+  <div class="window">
+    <div class="close-button" (click)="showingAvatarWindow = false">X</div>
+    <div class="avatars">
+      <img
+        class="avatar"
+        src="../../../../assets/images/avatars/avatarOne.png"
+        (click)="getProfilePic($event)"
+      />
+      <img
+        class="avatar"
+        src="../../../../assets/images/avatars/avatarTwo.png"
+        (click)="getProfilePic($event)"
+      />
+      <img
+        class="avatar"
+        src="../../../../assets/images/avatars/avatarThree.png"
+        (click)="getProfilePic($event)"
+      />
+      <img
+        class="avatar"
+        src="../../../../assets/images/avatars/avatarFour.png"
+        (click)="getProfilePic($event)"
+      />
+      <img
+        class="avatar"
+        src="../../../../assets/images/avatars/avatarFive.png"
+        (click)="getProfilePic($event)"
+      />
+      <img
+        class="avatar"
+        src="../../../../assets/images/avatars/avatarSix.png"
+        (click)="getProfilePic($event)"
+      />
+      <img
+        class="avatar"
+        src="../../../../assets/images/avatars/avatarSeven.png"
+        (click)="getProfilePic($event)"
+      />
+      <img
+        class="avatar"
+        src="../../../../assets/images/avatars/avatarEight.png"
+        (click)="getProfilePic($event)"
+      />
+      <img
+        class="avatar"
+        src="../../../../assets/images/avatars/avatarNine.png"
+        (click)="getProfilePic($event)"
+      />
+    </div>
+  </div>
 </div>
