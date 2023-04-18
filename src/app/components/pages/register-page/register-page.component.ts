@@ -30,19 +30,24 @@ export class RegisterPageComponent implements OnInit {
   }
 
   onSubmit() {
-    let newUser: User = {
-      email: this.user.email,
-      username: this.user.username,
-      firstname: this.user.firstname,
-      lastname: this.user.lastname,
-      password: this.user.firstPassword,
-      dateOfBirth: this.user.dateOfBirth,
-      profilePicture: this.profileAvatar,
-    };
-    this.userService.registerUser(newUser).subscribe(() => {
-      alert('Successfully registered!');
-      this.router.navigate(['login']);
-    });
+    if (!(this.user.firstPassword === this.user.confirmPassword)) {
+      alert('Passwords do not match');
+      return;
+    } else {
+      let newUser: User = {
+        email: this.user.email,
+        username: this.user.username,
+        firstname: this.user.firstname,
+        lastname: this.user.lastname,
+        password: this.user.firstPassword,
+        dateOfBirth: this.user.dateOfBirth,
+        profilePicture: this.profileAvatar,
+      };
+      this.userService.registerUser(newUser).subscribe(() => {
+        alert('Successfully registered!');
+        this.router.navigate(['login']);
+      });
+    }
   }
 
   getProfilePic(event: any) {
